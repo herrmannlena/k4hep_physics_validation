@@ -15,8 +15,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run validation scripts
-        run: |
-          cd ci-scripts/
-          source init.sh
-          source simulation.sh
-          source reconstruction.sh
+        run: source setup.sh

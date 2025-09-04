@@ -8,6 +8,7 @@ WORKAREA=$PWD
 INPUTPROCESS="wzp6_ee_mumuH_ecm240"
 INFILENAME="${WORKAREA}/../data/${INPUTPROCESS}_GEN.stdhep"
 OUTFILEBASE="TEST_${INPUTPROCESS}_$(date +%Y%m%d)"
+TAGGERSTEERING="${WORKAREA}/../steering_files/createJetTags.py"
 
 # enable exit on error to check correct script execution from within pipeline
 set -e
@@ -39,13 +40,15 @@ echo "Simulation execution finished"
 
 echo "RECONSTRUCTION PHASE:"
 k4run CLDReconstruction.py \
-    --inputFiles "${WORKAREA}/${OUTFILEBASE}_SIM.root" \
-    --outputBasename "${WORKAREA}/${OUTFILEBASE}" 
+        --inputFiles "${WORKAREA}/${OUTFILEBASE}_SIM.root" \
+        --outputBasename "${WORKAREA}/${OUTFILEBASE}" 
 
 cd "${WORKAREA}"
 
 echo "TAGGING PHASE:"
-k4run ../k4MLJetTagger/options/createJetTags.py --inputFiles folder/inputfile.root --outputFile folder/outputfile.root
+k4run "${TAGGERSTEERING}" \ 
+        --inputFiles "${WORKAREA}/${OUTFILEBASE}_REC.edm4hep.root" \ 
+        --outputFile "${WORKAREA}/${OUTFILEBASE}_TAGGER.root"
 
 
 

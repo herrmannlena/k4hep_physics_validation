@@ -1,1 +1,4 @@
-source /cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh
+cd ci-scripts
+source init.sh
+source simulation.sh
+source reconstruction.sh

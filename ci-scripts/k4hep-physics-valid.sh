@@ -23,23 +23,21 @@ echo "SETUP PHASE:"
 # K4GEO_PATH=$(realpath k4geo)
 # echo "Downloads finished"
 
-# # simulation phase
+# #  SIM -> RECO -> ML TAGGING -> ANALYSIS 
 echo "SIMULATION PHASE:"
 
 # cd "${CLDCONFIG}/share/CLDConfig"
 echo "Starting simulation..."
 cd "${CLDCONFIG}/share/CLDConfig"
-# ddsim --steeringFile cld_steer.py \
-#       --compactFile "${K4GEO}/FCCee/CLD/compact/CLD_o2_v07/CLD_o2_v07.xml" \
-#       --numberOfEvents "${NUMBER_OF_EVENTS}" \
-#       --inputFiles "${INFILENAME}" \
-#       --outputFile "${WORKAREA}/${OUTFILEBASE}_SIM.root" 
+ddsim --steeringFile cld_steer.py \
+      --compactFile "${K4GEO}/FCCee/CLD/compact/CLD_o2_v07/CLD_o2_v07.xml" \
+      --numberOfEvents "${NUMBER_OF_EVENTS}" \
+      --inputFiles "${INFILENAME}" \
+      --outputFile "${WORKAREA}/${OUTFILEBASE}_SIM.root" 
 
 echo "Simulation execution finished"
 
-# # simulation phase
 echo "RECONSTRUCTION PHASE:"
-# echo "${CLDCONFIG}/share/CLDConfig/CLDReconstruction.py"
 k4run CLDReconstruction.py \
     --inputFiles "${WORKAREA}/${OUTFILEBASE}_SIM.root" \
     --outputBasename "${WORKAREA}/${OUTFILEBASE}" 
@@ -47,6 +45,7 @@ k4run CLDReconstruction.py \
 cd "${WORKAREA}"
 
 echo "TAGGING PHASE:"
+k4run ../k4MLJetTagger/options/createJetTags.py --inputFiles folder/inputfile.root --outputFile folder/outputfile.root
 
 
 

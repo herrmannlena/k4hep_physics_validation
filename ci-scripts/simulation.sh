@@ -11,3 +11,4 @@ ddsim --steeringFile cld_steer.py \
        --outputFile "${WORKAREA}/${OUTFILEBASE}_SIM.root" 
 
 echo "Simulation execution finished"
+cd $WORKAREA

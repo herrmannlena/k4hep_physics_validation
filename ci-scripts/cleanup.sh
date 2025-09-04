@@ -13,3 +13,13 @@ mv -- *.root "$OUTPUT_DIR" 2>/dev/null
 # Feedback
 echo "Moved .root files to $OUTPUT_DIR/"
 cd ..
+
+echo "This project is licensed under the MIT License."
+echo "It bundles and depends on external software components:"
+echo "  - Wizard"
+echo "  - Pythia"
+echo "  - GiGaNt:"
+echo "  - FCCSW "
+
+echo "These are not covered by this license. Users must comply with their respective licenses.  "
+

@@ -1,0 +1,22 @@
+name: Physics Validation CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}  
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run validation scripts
+        run: |
+          cd ci-scripts/
+          source init.sh
+          source simulation.sh
+          source reconstruction.sh

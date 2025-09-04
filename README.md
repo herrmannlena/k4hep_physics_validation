@@ -9,7 +9,7 @@ git clone https://github.com/herrmannlena/k4hep_physics_validation.git
 cd k4hep_physics_validation
 ```
 
-1. Edit `ci-scripts/config.cfg` to point to your own `Key4HEP` stack and set the number of events:
+1. Edit `ci-scripts/config.cfg` to point to your own `Key4HEP` stack and set the number of events (NO SPACES):
 
    ```bash
    # config.cfg

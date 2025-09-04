@@ -16,9 +16,10 @@ cd k4hep_physics_validation
    KEY4HEP_SETUP="/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh"
    NUMBER_OF_EVENTS=10
    ```
-2. ```bash
+2. Run the pipeline:
+```bash
     source setup.sh
-    ```
+```
 
 The output files will be generated in a new directory called `output_data`.
 

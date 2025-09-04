@@ -3,7 +3,7 @@
 # tester events: wzp6_ee_mumuH_ecm240_GEN.stdhep # TO BE REPLACED 
 
 #some fixed variables for now:
-NUMBER_OF_EVENTS=1000
+NUMBER_OF_EVENTS=100
 WORKAREA=$PWD
 INPUTPROCESS="wzp6_ee_mumuH_ecm240"
 INFILENAME="${WORKAREA}/../data/${INPUTPROCESS}_GEN.stdhep"
@@ -30,11 +30,11 @@ echo "SIMULATION PHASE:"
 cd "${CLDCONFIG}/share/CLDConfig"
 echo "Starting simulation..."
 cd "${CLDCONFIG}/share/CLDConfig"
-# ddsim --steeringFile cld_steer.py \
-#       --compactFile "${K4GEO}/FCCee/CLD/compact/CLD_o2_v07/CLD_o2_v07.xml" \
-#       --numberOfEvents "${NUMBER_OF_EVENTS}" \
-#       --inputFiles "${INFILENAME}" \
-#       --outputFile "${WORKAREA}/${OUTFILEBASE}_SIM.root" 
+ddsim --steeringFile cld_steer.py \
+      --compactFile "${K4GEO}/FCCee/CLD/compact/CLD_o2_v07/CLD_o2_v07.xml" \
+      --numberOfEvents "${NUMBER_OF_EVENTS}" \
+      --inputFiles "${INFILENAME}" \
+      --outputFile "${WORKAREA}/${OUTFILEBASE}_SIM.root" 
 
 echo "Simulation execution finished"
 

@@ -1,1 +1,20 @@
 # k4hep_physics_validation
+
+## Getting Started
+
+1. Edit `ci-scripts/config.cfg` to point to your own `Key4HEP` stack and set the number of events:
+
+   ```bash
+   # config.cfg
+   KEY4HEP_SETUP="/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh"
+   NUMBER_OF_EVENTS=10
+   ```
+2. ```bash
+    source setup.sh
+    ```
+
+The output files will be generated in a new directory called `output_data`.
+
+
+
+

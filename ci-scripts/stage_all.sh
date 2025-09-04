@@ -3,7 +3,7 @@
 # tester events: wzp6_ee_mumuH_ecm240_GEN.stdhep # TO BE REPLACED 
 
 #some fixed variables for now:
-NUMBER_OF_EVENTS=100
+NUMBER_OF_EVENTS=10
 WORKAREA=$PWD
 INPUTPROCESS="wzp6_ee_mumuH_ecm240"
 INFILENAME="${WORKAREA}/../data/${INPUTPROCESS}_GEN.stdhep"
@@ -42,7 +42,8 @@ echo "RECONSTRUCTION PHASE:"
 k4run CLDReconstruction.py \
         --inputFiles "${WORKAREA}/${OUTFILEBASE}_SIM.root" \
         --outputBasename "${WORKAREA}/${OUTFILEBASE}" \
-        --num-events -1
+        --num-events -1 \
+        --enableLCFIJet 
 
 cd $WORKAREA
 

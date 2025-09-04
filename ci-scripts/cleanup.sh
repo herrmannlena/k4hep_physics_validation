@@ -12,4 +12,4 @@ mv -- *.root "$OUTPUT_DIR" 2>/dev/null
 
 # Feedback
 echo "Moved .root files to $OUTPUT_DIR/"
-
+cd ..

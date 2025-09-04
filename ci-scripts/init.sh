@@ -6,7 +6,7 @@ echo "Working area: $WORKAREA"
 echo "Input: $INFILENAME"
 echo "Output: $OUTFILENAME"
 
-set -e
+#set -e
 
 # setup phase
 echo "Setting up software stack"

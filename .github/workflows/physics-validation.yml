@@ -16,7 +16,7 @@ jobs:
 
       - name: Run validation scripts
         run: |
-          cd k4hep_physics_validation/ci-scripts/
+          cd ci-scripts/
           source init.sh
           source simulation.sh
           source reconstruction.sh

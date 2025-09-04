@@ -18,7 +18,7 @@ echo "This project is licensed under the MIT License."
 echo "It bundles and depends on external software components:"
 echo "  - Wizard"
 echo "  - Pythia"
-echo "  - GiGaNt:"
+echo "  - Geant4:"
 echo "  - FCCSW "
 
 echo "These are not covered by this license. Users must comply with their respective licenses.  "

@@ -6,4 +6,5 @@ k4run CLDReconstruction.py \
 
 cd "${WORKAREA}"
 
-echo "TAGGING PHASE:""
+echo "Reconstruction was successful!"
+cd $WORKAREA

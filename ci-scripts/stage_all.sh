@@ -5,7 +5,7 @@
 #some fixed variables for now:
 NUMBER_OF_EVENTS=10
 WORKAREA=$PWD
-INPUTPROCESS="wzp6_ee_mumuH_ecm240"
+INPUTPROCESS="wzp6_ee_nunuH_ecm240"
 INFILENAME="${WORKAREA}/../data/${INPUTPROCESS}_GEN.stdhep"
 OUTFILEBASE="TEST_${INPUTPROCESS}_$(date +%Y%m%d)"
 TAGGERSTEERING="${WORKAREA}/../steering_files/createJetTags.py"

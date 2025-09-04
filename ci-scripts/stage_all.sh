@@ -11,7 +11,7 @@ OUTFILEBASE="TEST_${INPUTPROCESS}_$(date +%Y%m%d)"
 TAGGERSTEERING="${WORKAREA}/../steering_files/createJetTags.py"
 
 # enable exit on error to check correct script execution from within pipeline
-set -e
+# set -e
 
 # setup phase
 echo "SETUP PHASE:"
@@ -27,7 +27,7 @@ echo "SETUP PHASE:"
 # #  SIM -> RECO -> ML TAGGING -> ANALYSIS 
 echo "SIMULATION PHASE:"
 
-# cd "${CLDCONFIG}/share/CLDConfig"
+cd "${CLDCONFIG}/share/CLDConfig"
 echo "Starting simulation..."
 cd "${CLDCONFIG}/share/CLDConfig"
 ddsim --steeringFile cld_steer.py \
@@ -43,14 +43,13 @@ k4run CLDReconstruction.py \
         --inputFiles "${WORKAREA}/${OUTFILEBASE}_SIM.root" \
         --outputBasename "${WORKAREA}/${OUTFILEBASE}" 
 
-cd "${WORKAREA}"
+cd $WORKAREA
 
+pwd -P
 echo "TAGGING PHASE:"
-k4run "${TAGGERSTEERING}" \ 
-        --inputFiles "${WORKAREA}/${OUTFILEBASE}_REC.edm4hep.root" \ 
+k4run "${TAGGERSTEERING}" \
+        --inputFiles "${WORKAREA}/${OUTFILEBASE}_REC.edm4hep.root" \
         --outputFile "${WORKAREA}/${OUTFILEBASE}_TAGGER.root"
-
-
 
 # # analyze simulation file
 # echo "ANALYSIS PHASE:"

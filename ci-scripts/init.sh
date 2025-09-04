@@ -1,7 +1,8 @@
 source ./config.cfg
 
 WORKAREA=$PWD
-
+INFILENAME="${WORKAREA}/../data/${INPUTPROCESS}_GEN.stdhep"
+OUTFILEBASE="TEST_${INPUTPROCESS}_$(date +%Y%m%d)"
 # Debugging info
 echo "Using Key4HEP setup: $KEY4HEP_SETUP"
 echo "Working area: $WORKAREA"

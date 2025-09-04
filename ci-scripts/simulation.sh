@@ -1,7 +1,6 @@
 # # simulation phase
 echo "SIMULATION PHASE:"
-INFILENAME="${WORKAREA}/../data/${INPUTPROCESS}_GEN.stdhep"
-OUTFILEBASE="TEST_${INPUTPROCESS}_$(date +%Y%m%d)"
+
 # cd "${CLDCONFIG}/share/CLDConfig"
 echo "Starting simulation..."
 cd "${CLDCONFIG}/share/CLDConfig"

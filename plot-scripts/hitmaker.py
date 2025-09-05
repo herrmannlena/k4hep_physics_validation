@@ -18,7 +18,7 @@ else:
 
 # list of processes (mandatory)
 processList = {
-    sample: {'fraction':1, 'inputDir': "" },  #what are the exact values here?/ correct cross section
+    str(sample): {'fraction':1, 'inputDir': "." },  #what are the exact values here?/ correct cross section
 }
 
 includePaths = ["functions.h"]
@@ -81,6 +81,9 @@ def build_graph(df, dataset):
 
     df = df.Define("missingMass", "FCCAnalyses::ZHfunctions::missingMass(240., ReconstructedParticles)")
     results.append(df.Histo1D(("missingMass", "", 250, 0, 250), "missingMass"))
+
+    df = df.Define("b_tags", "FCCAnalyses::get_bscores(RefinedJetTag_B)") # btagging
+    results.append(df.Histo1D(("b_tags", "", 100, 0, 1), "b_tags"))
 
     df = df.Define("b_tags_sum", "b_tags[0] + b_tags[1]") # sum of b-tag scores 
     results.append(df.Histo1D(("b_tags_sum", "", 100, 0, 2), "b_tags_sum"))

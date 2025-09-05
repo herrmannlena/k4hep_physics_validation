@@ -1,0 +1,143 @@
+import os, copy, argparse
+import ROOT
+
+def extract_between_underscores(process_name):
+    parts = process_name.split("_")
+    if len(parts) < 3:
+        raise ValueError(f"Process name '{process_name}' must contain at least two underscores")
+    return parts[1]
+
+
+
+parser = argparse.ArgumentParser(description="My script that takes a variable")
+parser.add_argument( "--xsec", type=str, required=True, help="cross-section")
+parser.add_argument( "--ilum", type=str, required=True, help="integrated-luminosity")
+parser.add_argument( "--ecm", type=str, required=True, help="integrated-luminosity")
+parser.add_argument( "--process_name", type=str, required=True, help="process name")
+parser.add_argument( "--output", type=str, required=True, help="output directory")
+
+args = parser.parse_args()
+
+
+# global parameters
+intLumi = args.ilum
+intLumiLabel   = "L = {} ab^{-1}".format(intLumi*1e-6)
+ana_tex        = 'e^{+}e^{-} #rightarrow {}'.format(extract_between_underscores(args.process_name))
+delphesVersion = '3.4.2'
+energy         = args.ecm
+collider       = 'FCC-ee'
+formats        = ['png','pdf']
+
+#outdir         = './outputs/plots/flavor/' 
+#inputDir       = './outputs/histmaker/flavor/' 
+
+outdir         = args.output+"/final"
+# inputDir       = '/afs/cern.ch/work/s/saaumill/public/MyFCCAnalyses/outputs/histmaker_fullsim/ZHgamma_btag/' 
+inputDir       = args.output
+
+plotStatUnc    = True
+
+colors = {}
+colors['nunuH'] = ROOT.kRed
+
+
+procs = {}
+procs['signal'] = {'nunuH':['p8_ee_ZnunuHbb_ecm240']}
+procs['backgrounds'] =  {'':[], }
+
+
+legend = {}
+legend['nunuH'] = '#nunu H'
+
+
+
+hists = {}
+hists2D = {}
+
+
+
+
+"""
+hists["cutFlow"] = {
+    "input":   "cutFlow",
+    "output":   "cutFlow",
+    "logy":     True,
+    "stack":   True,
+    "xmin":     0,
+    "xmax":     8,
+    "ymin":     1e4,
+    "ymax":     1e11,
+    #"xtitle":   ["All events", "iso < 0.2", "60  < p_{#gamma} < 100 ", "|cos(#theta)_{#gamma}|<0.9", "n particles > 5"],
+    "xtitle":   ["All events"], #  "120 < m_{recoil} < 132 "], # "110 < m_{recoil} < 140 "
+    "ytitle":   "Events ",
+}
+"""
+# hists["gamma_recoil_m"] = {
+#     "input":   "gamma_recoil_m",
+#     "output":   "gamma_recoil_m",
+#     "logy":     False,
+#     "stack":    True,
+#     "xmin":     110,
+#     "xmax":     150,
+#     "xtitle":   "Recoil (GeV)",
+#     "ytitle":   "Events ",
+#     "density": False,
+#     "scaleSig": 1000,
+
+# }
+
+
+hists["b_tags_sum"] = {
+    "input":   "b_tags_sum",
+    "output":   "b_tags_sum",
+    "logy":     True,
+    "stack":    True,
+    "xmin":     0,
+    "xmax":     2,
+    "xtitle":   "b-tags sum",
+    "ytitle":   "Events ",
+    "density": False,
+    "scaleSig": 1000,
+    "rebin": 2,
+
+}
+
+hists["m_jj"] = {
+    "input":   "m_jj",
+    "output":   "m_jj",
+    "logy":     True,
+    "stack":    True,
+    "xmin":     0,
+    "xmax":     240,
+    "xtitle":   "m_jj",
+    "ytitle":   "Events ",
+    "density": False,
+    "scaleSig": 1000,
+
+}
+
+hists["mcID"] = {
+    "input":   "mcID",
+    "output":   "mcID",
+    "logy":     True,
+    "stack":    True,
+    "xmin":     0,
+    "xmax":     40,
+    "xtitle":   "mcID",
+    "ytitle":   "Events ",
+    "density": False,
+
+}
+
+hists["missingMass"] = {
+    "input":   "missingMass",
+    "output":   "missingMass",
+    "logy":     True,
+    "stack":    True,
+    "xmin":     0,
+    "xmax":     250,
+    "xtitle":   "missingMass",
+    "ytitle":   "Events ",
+    "density": False,
+
+}

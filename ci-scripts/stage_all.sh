@@ -58,7 +58,11 @@ echo "ANALYSIS PHASE:"
 
 echo "Starting analysis script: FCCAnalyses approach..."
 fccanalysis run ../plot-scripts/hitmaker.py \
-        -- "${WORKAREA}/${OUTFILEBASE}_TAGGER" "${WORKAREA}/hists/"
+        -- "${OUTFILEBASE}_TAGGER" "${WORKAREA}/hists/"
+
+echo "Plotting with FCCAnalyses approach..."
+fccanalysis plots ../plot-scripts/plots_flavor.py \
+        -- "${OUTFILEBASE}_TAGGER" "./hists/"
 
 
 

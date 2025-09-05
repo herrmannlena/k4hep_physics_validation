@@ -1,5 +1,20 @@
-import os, copy, argparse
+import os, copy
 import ROOT
+
+import sys
+
+print(len(sys.argv))
+# exit()
+
+if len(sys.argv) < 6:
+    raiseException("Missing command line arguments!")
+else: 
+    print("Running with process_name", sys.argv[4])
+    process_name = sys.argv[4]
+
+    print("Running with plotDir", sys.argv[5])
+    plotDir = sys.argv[5]
+
 
 def extract_between_underscores(process_name):
     parts = process_name.split("_")
@@ -9,31 +24,36 @@ def extract_between_underscores(process_name):
 
 
 
-parser = argparse.ArgumentParser(description="My script that takes a variable")
-parser.add_argument( "--xsec", type=str, required=True, help="cross-section")
-parser.add_argument( "--ilum", type=str, required=True, help="integrated-luminosity")
-parser.add_argument( "--ecm", type=str, required=True, help="integrated-luminosity")
-parser.add_argument( "--process_name", type=str, required=True, help="process name")
-parser.add_argument( "--output", type=str, required=True, help="output directory")
+# parser = argparse.ArgumentParser(description="My script that takes a variable")
+# parser.add_argument( "--xsec", type=str, required=True, help="cross-section")
+# parser.add_argument( "--ilum", type=str, required=True, help="integrated-luminosity")
+# parser.add_argument( "--ecm", type=str, required=True, help="integrated-luminosity")
+# parser.add_argument( "--process_name", type=str, required=True, help="process name")
+# parser.add_argument( "--output", type=str, required=True, help="output directory")
 
-args = parser.parse_args()
+# args = parser.parse_args()
+
+# process_name = "wzp6_ee_nunuH_ecm240"
 
 
 # global parameters
-intLumi = args.ilum
-intLumiLabel   = "L = {} ab^{-1}".format(intLumi*1e-6)
-ana_tex        = 'e^{+}e^{-} #rightarrow {}'.format(extract_between_underscores(args.process_name))
+intLumi = 1.
+intLumiLabel   = "L = 10.8 ab^{-1}"
+ana_tex        = 'e^{+}e^{-} #rightarrow #nunu H'
+#below doesn't work yet
+# intLumiLabel   = "L = {{}} ab^{-1}".format(intLumi*1e-6) 
+# ana_tex        = 'e^{+}e^{-} #rightarrow {}'.format(extract_between_underscores(process_name))
 delphesVersion = '3.4.2'
-energy         = args.ecm
+energy         = '240.0'
 collider       = 'FCC-ee'
 formats        = ['png','pdf']
 
 #outdir         = './outputs/plots/flavor/' 
 #inputDir       = './outputs/histmaker/flavor/' 
 
-outdir         = args.output+"/final"
+outdir         = os.path.join(plotDir, "plots")
 # inputDir       = '/afs/cern.ch/work/s/saaumill/public/MyFCCAnalyses/outputs/histmaker_fullsim/ZHgamma_btag/' 
-inputDir       = args.output
+inputDir       = os.path.join(plotDir, "hists")
 
 plotStatUnc    = True
 

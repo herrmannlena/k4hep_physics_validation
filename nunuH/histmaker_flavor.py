@@ -19,6 +19,10 @@ As these are not nice to link, I've created simlinks here: /afs/cern.ch/work/s/s
 This folder has folders with the names of the processes, and inside are the simlinks to the files.
 """
 
+
+
+
+
 input_base = "/afs/cern.ch/work/l/lherrman/private/k4MLJetTagger/output"
 
 # list of processes (mandatory)
@@ -43,7 +47,7 @@ includePaths = ["functions.h"]
 #Optional: output directory, default is local running directory
 
 # outputDir   = "/afs/cern.ch/work/s/saaumill/public/MyFCCAnalyses/outputs/histmaker_fullsim/ZHgamma_btag/"
-outputDir   = "/afs/cern.ch/work/l/lherrman/private/k4hepphyscal/fccanalysis/nunuH/output/histmaker"
+outputDir   = "/afs/cern.ch/work/l/lherrman/public/k4hep_physics_validation/nunuH/output/histmaker"
 
 
 # optional: ncpus, default is 4, -1 uses all cores available
@@ -123,33 +127,24 @@ def build_graph(df, dataset):
     df = df.Define("missingMass", "FCCAnalyses::ZHfunctions::missingMass(240., ReconstructedParticles)")
     results.append(df.Histo1D(("missingMass", "", 250, 0, 250), "missingMass"))
 
+    #########
+    ### CUT 0: all events
+    #########
+    df = df.Define("cut0", "0")
+    results.append(df.Histo1D(("cutFlow", "", *bins_count), "cut0"))
+
+    #########
+    ### CUT 1: b-score cut
+    #########
+    df = df.Filter("b_tags_sum > 1.6") 
+
+
+    df = df.Define("cut1", "1")
+    results.append(df.Histo1D(("cutFlow", "", *bins_count), "cut1"))
+
+
+
     """
-
-    df = df.Define("photons_all", "FCCAnalyses::sel_type(22, ReconstructedParticles)")
-    df = df.Define("electrons_all", f"FCCAnalyses::sel_type(11, ReconstructedParticles)")
-
-
-    df = df.Define("photons_p", "FCCAnalyses::ReconstructedParticle::get_p(photons_all)") 
-    df = df.Define("photons_n","FCCAnalyses::ReconstructedParticle::get_n(photons_all)")  #number of photons per event
-    df = df.Define("photons_cos_theta","cos(FCCAnalyses::ReconstructedParticle::get_theta(photons_all))")
-    
-
-    df = df.Define("electrons_p", "FCCAnalyses::ReconstructedParticle::get_p(electrons_all)") 
-    df = df.Define("electrons_n","FCCAnalyses::ReconstructedParticle::get_n(electrons_all)")  #number of photons per event
-    df = df.Define("electrons_cos_theta","cos(FCCAnalyses::ReconstructedParticle::get_theta(electrons_all))")
-
-
-
-    # order the cos theta values, and return arrays, when filter require length 2 for cut!
-
-    # get cos theta from electrons
-    df = df.Define("electrons_ordered_cos_theta","FCCAnalyses::ZHfunctions::ee_costheta_max(electrons_cos_theta)")
-   
-    #print and check
-    #df = df.Define("photons_print", "FCCAnalyses::ZHfunctions::print_momentum(electrons_all)")
-    #results.append(df.Histo1D(("photons_print", "", 100, 0, 100), "photons_print"))
-
-
     #########
     ### CUT 0: all events
     #########

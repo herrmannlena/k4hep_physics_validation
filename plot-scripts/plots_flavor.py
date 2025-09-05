@@ -64,22 +64,9 @@ hists["cutFlow"] = {
     "stack":   True,
     "xmin":     0,
     "xmax":     2,
-    "xtitle":   ["All events", "b_score_sum > 1.6"], #  "120 < m_{recoil} < 132 "], # "110 < m_{recoil} < 140 "
+    "xtitle":   ["All events", "b_score_sum > 1.6"], 
     "ytitle":   "Events ",
 }
-# hists["gamma_recoil_m"] = {
-#     "input":   "gamma_recoil_m",
-#     "output":   "gamma_recoil_m",
-#     "logy":     False,
-#     "stack":    True,
-#     "xmin":     110,
-#     "xmax":     150,
-#     "xtitle":   "Recoil (GeV)",
-#     "ytitle":   "Events ",
-#     "density": False,
-#     "scaleSig": 1000,
-
-# }
 
 
 hists["b_tags_sum"] = {
@@ -111,18 +98,6 @@ hists["m_jj"] = {
 
 }
 
-hists["mcID"] = {
-    "input":   "mcID",
-    "output":   "mcID",
-    "logy":     True,
-    "stack":    True,
-    "xmin":     0,
-    "xmax":     40,
-    "xtitle":   "mcID",
-    "ytitle":   "Events ",
-    "density": False,
-
-}
 
 hists["missingMass"] = {
     "input":   "missingMass",

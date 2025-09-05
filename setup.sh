@@ -4,4 +4,4 @@ source simulation.sh
 source reconstruction.sh
 source tagger.sh
 source cleanup.sh
-source ci-scripts/k4Temp.sh
+source k4Temp.sh

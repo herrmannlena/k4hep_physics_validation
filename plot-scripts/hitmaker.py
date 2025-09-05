@@ -1,33 +1,38 @@
 # from Lena 11.April 2025, see: https://github.com/herrmannlena/FCCAnalyses/blob/higgsgamma/myanalysis/histmaker_recoil.py 
 
-import os, copy, argparse
+import os, copy
 
+import sys
 
+print(len(sys.argv))
+# exit()
 
-parser = argparse.ArgumentParser(description="My script that takes a variable")
-parser.add_argument( "--input", type=str, required=True, help="input directory")
-parser.add_argument( "--output", type=str, required=True, help="output directory")
-parser.add_argument( "--process_name", type=str, required=True, help="process name")
-parser.add_argument( "--xsec", type=str, required=True, help="cross-section")
-parser.add_argument( "--ilum", type=str, required=True, help="integrated-luminosity")
+if len(sys.argv) < 6:
+    raiseException("Missing command line arguments!")
+else: 
+    print("Running with sample", sys.argv[4])
+    sample = sys.argv[4]
 
-args = parser.parse_args()
+    print("Running with outputDir", sys.argv[5])
+    outputDir = sys.argv[5]
 
-
-input_base = args.input
-outputDir   = args.output
-process = args.process_name
-xsec = args.xsec
 # list of processes (mandatory)
 processList = {
-    process:    {'fraction':1, 'crossSection': xsec, 'inputDir': input_base},  #what are the exact values here?/ correct cross section
+    sample: {'fraction':1, 'inputDir': "" },  #what are the exact values here?/ correct cross section
 }
 
 includePaths = ["functions.h"]
 nCPUS       = -1
 
 doScale = True
-intLumi = args.ilum
+intLumi = 1.
+
+# Link to the dictionary that contains all the cross section information etc...
+procDict = "FCCee_procDict_spring2021_IDEA.json"
+
+# Add MySample_p8_ee_ZH_ecm240 as it is not an offical process
+procDictAdd = {sample: {"numberOfEvents": 10, "sumOfWeights": 10, "crossSection": 1.0, "kfactor": 1.0, "matchingEfficiency": 1.0}}
+
 
 
 # define some binning for various histograms

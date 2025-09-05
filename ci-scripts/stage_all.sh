@@ -53,10 +53,15 @@ k4run "${TAGGERSTEERING}" \
         --inputFiles "${WORKAREA}/${OUTFILEBASE}_REC.edm4hep.root" \
         --outputFile "${WORKAREA}/${OUTFILEBASE}_TAGGER.root"
 
-# # analyze simulation file
-# echo "ANALYSIS PHASE:"
+# analyze simulation file
+echo "ANALYSIS PHASE:"
 
-# echo "Starting analysis script..."
+echo "Starting analysis script: FCCAnalyses approach..."
+fccanalysis run ../plot-scripts/hitmaker.py \
+        -- "${WORKAREA}/${OUTFILEBASE}_TAGGER" "${WORKAREA}/hists/"
+
+
+
 # python "${WORKAREA}/key4hep-reco-validation/scripts/FCCee/CLD/ARC_make_hists.py" \
 #        -f ARC_sim.root -o results.root \
 #        -c "${K4GEO_PATH}/test/compact/ARC_standalone_o1_v01.xml"

@@ -9,12 +9,14 @@ git clone https://github.com/herrmannlena/k4hep_physics_validation.git
 cd k4hep_physics_validation
 ```
 
-1. Edit `ci-scripts/config.cfg` to point to your own `Key4HEP` stack and set the number of events (NO whitespace):
+1. Edit `ci-scripts/config.cfg` to point to your own `Key4HEP` stack, the process name and set the number of events (NO whitespace):
 
    ```bash
    # config.cfg
    KEY4HEP_SETUP="/cvmfs/sw-nightlies.hsf.org/key4hep/setup.sh"
    NUMBER_OF_EVENTS=10
+   INPUTPROCESS="wzp6_ee_nunuH_ecm240"
+
    ```
 2. Run the pipeline (from the base root of the repository):
 ```bash

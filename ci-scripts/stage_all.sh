@@ -62,7 +62,7 @@ fccanalysis run ../plot-scripts/hitmaker.py \
 
 echo "Plotting with FCCAnalyses approach..."
 fccanalysis plots ../plot-scripts/plots_flavor.py \
-        -- "${OUTFILEBASE}_TAGGER" "./hists/"
+        -- "${OUTFILEBASE}_TAGGER" "./"
 
 
 

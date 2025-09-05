@@ -44,9 +44,10 @@ ana_tex        = 'e^{+}e^{-} #rightarrow #nunu H'
 # intLumiLabel   = "L = {{}} ab^{-1}".format(intLumi*1e-6) 
 # ana_tex        = 'e^{+}e^{-} #rightarrow {}'.format(extract_between_underscores(process_name))
 delphesVersion = '3.4.2'
-energy         = '240.0'
+energy         = 240
 collider       = 'FCC-ee'
 formats        = ['png','pdf']
+
 
 #outdir         = './outputs/plots/flavor/' 
 #inputDir       = './outputs/histmaker/flavor/' 
@@ -62,7 +63,7 @@ colors['nunuH'] = ROOT.kRed
 
 
 procs = {}
-procs['signal'] = {'nunuH':['p8_ee_ZnunuHbb_ecm240']}
+procs['signal'] = {'nunuH':[process_name]}
 procs['backgrounds'] =  {'':[], }
 
 

@@ -26,6 +26,7 @@ nCPUS       = -1
 
 doScale = True
 intLumi = 1.
+ecm = 240
 
 # Link to the dictionary that contains all the cross section information etc...
 procDict = "FCCee_procDict_spring2021_IDEA.json"

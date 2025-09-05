@@ -7,4 +7,4 @@ cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=../install
 make -j 4 install
 cd ../../../
-#cd ci-scripts/k4-project-template/k4ProjectTemplate/options/
+cp ci-scripts/gaudi.py ci-scripts/k4-project-template/k4ProjectTemplate/options/

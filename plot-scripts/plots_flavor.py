@@ -57,21 +57,16 @@ hists2D = {}
 
 
 
-"""
 hists["cutFlow"] = {
     "input":   "cutFlow",
     "output":   "cutFlow",
     "logy":     True,
     "stack":   True,
     "xmin":     0,
-    "xmax":     8,
-    "ymin":     1e4,
-    "ymax":     1e11,
-    #"xtitle":   ["All events", "iso < 0.2", "60  < p_{#gamma} < 100 ", "|cos(#theta)_{#gamma}|<0.9", "n particles > 5"],
-    "xtitle":   ["All events"], #  "120 < m_{recoil} < 132 "], # "110 < m_{recoil} < 140 "
+    "xmax":     2,
+    "xtitle":   ["All events", "b_score_sum > 1.6"], #  "120 < m_{recoil} < 132 "], # "110 < m_{recoil} < 140 "
     "ytitle":   "Events ",
 }
-"""
 # hists["gamma_recoil_m"] = {
 #     "input":   "gamma_recoil_m",
 #     "output":   "gamma_recoil_m",

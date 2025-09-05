@@ -99,6 +99,21 @@ def build_graph(df, dataset):
     df = df.Define("missingMass", "FCCAnalyses::ZHfunctions::missingMass(240., ReconstructedParticles)")
     results.append(df.Histo1D(("missingMass", "", 250, 0, 250), "missingMass"))
 
+    #########
+    ### CUT 0: all events
+    #########
+    df = df.Define("cut0", "0")
+    results.append(df.Histo1D(("cutFlow", "", *bins_count), "cut0"))
+
+    #########
+    ### CUT 1: b-score cut
+    #########
+    df = df.Filter("b_tags_sum > 1.6") 
+
+
+    df = df.Define("cut1", "1")
+    results.append(df.Histo1D(("cutFlow", "", *bins_count), "cut1"))
+
     """
 
     df = df.Define("photons_all", "FCCAnalyses::sel_type(22, ReconstructedParticles)")
